@@ -1,12 +1,13 @@
 import React from 'react';
-import { Box, Typography, Button, Card, CardMedia, CardContent, CardActions, Chip } from '@material-ui/core';
+import { Box, Typography, Button, Card, CardMedia, CardContent, CardActions, Chip, Select } from '@material-ui/core';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import PhoneIcon from '@material-ui/icons/Phone';
 import Rating from '@material-ui/lab/Rating';
 import makeStyles from "./style.js";
 
-const PlaceDetails =({place}) =>{
+const PlaceDetails =({place, selected, refProps}) =>{
 const classes = makeStyles();
+if (selected) refProps?.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     return(
         <Card elevation={6}>
         <CardMedia
@@ -34,7 +35,7 @@ const classes = makeStyles();
           </Box>
           {place?.awards?.map((award) => (
             <Box display="flex" justifyContent="space-between" my={1} alignItems="center">
-              <img src={award.images.small} />
+              <img alt ="" src={award.images.small} />
               <Typography variant="subtitle2" color="textSecondary">{award.display_name}</Typography>
             </Box>
           ))}
